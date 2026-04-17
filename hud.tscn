@@ -1,0 +1,107 @@
+[gd_scene format=3 uid="uid://dls44sfrwd3jx"]
+
+[ext_resource type="Script" uid="uid://ci6hvx04epshu" path="res://hud.gd" id="1_64ctp"]
+[ext_resource type="FontFile" uid="uid://dr2vyqmcbsnek" path="res://fonts/pacman.ttf" id="2_64ctp"]
+[ext_resource type="AudioStream" uid="uid://ik3vwi6k2ap1" path="res://art/click.ogg" id="3_8sq4i"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_64ctp"]
+action = &"start"
+
+[sub_resource type="Shortcut" id="Shortcut_8sq4i"]
+events = [SubResource("InputEventAction_64ctp")]
+
+[node name="HUD" type="CanvasLayer" unique_id=727676462]
+script = ExtResource("1_64ctp")
+
+[node name="HiScoreLabel" type="Label" parent="." unique_id=1604671076]
+visible = false
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -203.0
+offset_top = 200.0
+offset_right = 203.0
+offset_bottom = 280.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_64ctp")
+theme_override_font_sizes/font_size = 24
+text = "HI-SCORE   0"
+horizontal_alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="." unique_id=1694502143]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -203.0
+offset_top = 30.0
+offset_right = 203.0
+offset_bottom = 108.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("2_64ctp")
+theme_override_font_sizes/font_size = 64
+text = "0"
+horizontal_alignment = 1
+
+[node name="Message" type="Label" parent="." unique_id=1934070620]
+custom_minimum_size = Vector2(480, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -240.0
+offset_top = -107.0
+offset_right = 240.0
+offset_bottom = 107.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_fonts/font = ExtResource("2_64ctp")
+theme_override_font_sizes/font_size = 48
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="StartButton" type="Button" parent="." unique_id=1884223135]
+custom_minimum_size = Vector2(200, 100)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -406.0
+offset_right = 150.0
+offset_bottom = -306.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_colors/font_hover_color = Color(0.005994878, 0.20583653, 0.895366, 1)
+theme_override_fonts/font = ExtResource("2_64ctp")
+theme_override_font_sizes/font_size = 48
+shortcut = SubResource("Shortcut_8sq4i")
+text = "Start"
+
+[node name="MessageTimer" type="Timer" parent="." unique_id=878948415]
+wait_time = 2.1
+one_shot = true
+
+[node name="MessageBlinkTimer" type="Timer" parent="." unique_id=1638553946]
+wait_time = 0.3
+
+[node name="HiScoreBlinkTimer" type="Timer" parent="." unique_id=1304434451]
+wait_time = 0.4
+
+[node name="ButtonClick" type="AudioStreamPlayer2D" parent="." unique_id=1248374446]
+stream = ExtResource("3_8sq4i")
+volume_db = 10.0
+pitch_scale = 1.2
+
+[connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="timeout" from="MessageTimer" to="." method="_on_message_timer_timeout"]
+[connection signal="timeout" from="MessageBlinkTimer" to="." method="_on_message_blink_timer_timeout"]
+[connection signal="timeout" from="HiScoreBlinkTimer" to="." method="_on_hi_score_blink_timer_timeout"]

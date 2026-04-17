@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://ckudr8chj1kgo"]
+
+[ext_resource type="Script" uid="uid://cjvqm1qwpcrio" path="res://player.gd" id="1_sweqy"]
+[ext_resource type="Texture2D" uid="uid://bkvinb12ha528" path="res://art/ghost-down/frame_0_delay-0.1s.png" id="2_1jxqw"]
+[ext_resource type="Texture2D" uid="uid://4jyn0ix7fu0v" path="res://art/ghost-dead/ghost-dead-1.png" id="2_b26j0"]
+[ext_resource type="Texture2D" uid="uid://dei8jmfh5ruhm" path="res://art/ghost-up/frame_0_delay-0.1s.png" id="2_sweqy"]
+[ext_resource type="Texture2D" uid="uid://c7ilodpkumn3i" path="res://art/ghost-up/frame_1_delay-0.1s.png" id="3_1jxqw"]
+[ext_resource type="Texture2D" uid="uid://cptxhagmk0dnb" path="res://art/ghost-down/frame_1_delay-0.1s.png" id="3_dw050"]
+[ext_resource type="Texture2D" uid="uid://2e8fw240hpu2" path="res://art/ghost-dead/ghost-dead-2.png" id="3_n7ghd"]
+[ext_resource type="Texture2D" uid="uid://7ml0ftll5ogq" path="res://art/ghost-left/frame_0_delay-0.1s.png" id="4_b26j0"]
+[ext_resource type="Texture2D" uid="uid://bg66rw64smxvd" path="res://art/ghost-left/frame_1_delay-0.1s.png" id="5_n7ghd"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dw050"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_b26j0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_n7ghd")
+}],
+"loop": true,
+"name": &"dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_1jxqw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_dw050")
+}],
+"loop": true,
+"name": &"down",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_b26j0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_n7ghd")
+}],
+"loop": true,
+"name": &"left",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_sweqy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_1jxqw")
+}],
+"loop": true,
+"name": &"up",
+"speed": 8.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b26j0"]
+radius = 27.0
+height = 60.0
+
+[node name="Player" type="Area2D" unique_id=760169373]
+script = ExtResource("1_sweqy")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1621399241]
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_dw050")
+animation = &"up"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=245879409]
+position = Vector2(0, 2)
+shape = SubResource("CapsuleShape2D_b26j0")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

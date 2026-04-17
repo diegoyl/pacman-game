@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://cqow47bch5ocs"]
+
+[ext_resource type="Script" uid="uid://cljo0h54ukqrs" path="res://main.gd" id="1_h2yge"]
+[ext_resource type="PackedScene" uid="uid://ckudr8chj1kgo" path="res://player.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://c1twr2i6iwxt8" path="res://mob.tscn" id="2_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://dls44sfrwd3jx" path="res://hud.tscn" id="3_h2yge"]
+[ext_resource type="AudioStream" uid="uid://6536h73bgihc" path="res://art/pacman_music_loop.ogg" id="5_7mycd"]
+[ext_resource type="AudioStream" uid="uid://cqe3x7pn1y1ex" path="res://art/pacman-game-over.ogg" id="6_7mycd"]
+
+[sub_resource type="Curve2D" id="Curve2D_lquwl"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 480, 0, 0, 0, 0, 0, 480, 720, 0, 0, 0, 0, 0, 720, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 480, 0)
+}
+point_count = 5
+
+[node name="Main" type="Node" unique_id=2107062155]
+script = ExtResource("1_h2yge")
+mob_scene = ExtResource("2_1bvp3")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=2096389584]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Player" parent="." unique_id=760169373 instance=ExtResource("1_ig7tw")]
+position = Vector2(-32, -28)
+
+[node name="MobTimer" type="Timer" parent="." unique_id=900046575]
+wait_time = 0.5
+
+[node name="ScoreTimer" type="Timer" parent="." unique_id=951048152]
+
+[node name="StartTimer" type="Timer" parent="." unique_id=375446237]
+wait_time = 2.0
+one_shot = true
+
+[node name="StartPosition" type="Marker2D" parent="." unique_id=809722271]
+position = Vector2(240, 512)
+
+[node name="MobPath" type="Path2D" parent="." unique_id=1088450792]
+curve = SubResource("Curve2D_lquwl")
+
+[node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath" unique_id=222262669]
+position = Vector2(480, 0)
+rotation = 1.5707964
+
+[node name="HUD" parent="." unique_id=727676462 instance=ExtResource("3_h2yge")]
+
+[node name="Music" type="AudioStreamPlayer2D" parent="." unique_id=1830401043]
+stream = ExtResource("5_7mycd")
+parameters/looping = true
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="." unique_id=1963658977]
+stream = ExtResource("6_7mycd")
+
+[connection signal="hit" from="Player" to="." method="game_over"]
+[connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
+[connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
+[connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
+[connection signal="start_game" from="HUD" to="." method="new_game"]
