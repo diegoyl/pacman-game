@@ -3,6 +3,16 @@
 [ext_resource type="Script" uid="uid://ci6hvx04epshu" path="res://hud.gd" id="1_64ctp"]
 [ext_resource type="FontFile" uid="uid://dr2vyqmcbsnek" path="res://fonts/pacman.ttf" id="2_64ctp"]
 [ext_resource type="AudioStream" uid="uid://ik3vwi6k2ap1" path="res://art/click.ogg" id="3_8sq4i"]
+[ext_resource type="Script" uid="uid://d0uj5osxb6os0" path="res://joystick.gd" id="4_640wx"]
+[ext_resource type="Texture2D" uid="uid://blu58dgje6t0q" path="res://art/joystick-base.png" id="5_1xsix"]
+[ext_resource type="Texture2D" uid="uid://dqt81hk1vvc67" path="res://art/joystick/joystick-dir_N.png" id="6_4q17s"]
+[ext_resource type="Texture2D" uid="uid://c8d4bs5q6wkcd" path="res://art/joystick/joystick-dir_NEUTRAL.png" id="6_rftc2"]
+[ext_resource type="Texture2D" uid="uid://dpy54yx2sa35f" path="res://art/joystick/joystick-dir_NE.png" id="7_2d608"]
+[ext_resource type="Texture2D" uid="uid://iwtjvrvbq4ow" path="res://art/joystick/joystick-dir_E.png" id="8_w71nf"]
+[ext_resource type="Texture2D" uid="uid://c2v8iqasshvsf" path="res://art/joystick/joystick-dir_SE.png" id="9_615i1"]
+[ext_resource type="Texture2D" uid="uid://dofymar0trfsi" path="res://art/joystick/joystick-dir_S.png" id="10_pw7dr"]
+[ext_resource type="Texture2D" uid="uid://56a20dd50k8g" path="res://art/joystick/joystick-dir_SW.png" id="11_ap7yk"]
+[ext_resource type="Texture2D" uid="uid://c4j0akeq4evkj" path="res://art/joystick/joystick-dir_W.png" id="12_5kc73"]
 
 [sub_resource type="InputEventAction" id="InputEventAction_64ctp"]
 action = &"start"
@@ -101,7 +111,58 @@ stream = ExtResource("3_8sq4i")
 volume_db = 10.0
 pitch_scale = 1.2
 
+[node name="JoystickToggle" type="Button" parent="." unique_id=65761719]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = -53.0
+offset_right = 198.0
+offset_bottom = -19.0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_64ctp")
+theme_override_font_sizes/font_size = 12
+text = "SHOW JOYSTICK"
+
+[node name="Joystick" type="Control" parent="." unique_id=18850675 node_paths=PackedStringArray("knob")]
+custom_minimum_size = Vector2(180, 180)
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -180.0
+offset_top = -180.0
+grow_horizontal = 0
+grow_vertical = 0
+script = ExtResource("4_640wx")
+stick_textures = Array[Texture2D]([ExtResource("6_rftc2"), ExtResource("6_4q17s"), ExtResource("7_2d608"), ExtResource("8_w71nf"), ExtResource("9_615i1"), ExtResource("10_pw7dr"), ExtResource("11_ap7yk"), ExtResource("12_5kc73"), null])
+knob = NodePath("Knob")
+
+[node name="Base" type="Sprite2D" parent="Joystick" unique_id=1314990836]
+position = Vector2(89.99999, 89.99999)
+scale = Vector2(1.417323, 1.417323)
+texture = ExtResource("5_1xsix")
+
+[node name="Knob" type="TextureRect" parent="Joystick" unique_id=710253606]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -87.5
+offset_top = -87.5
+offset_right = 87.5
+offset_bottom = 87.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("6_rftc2")
+
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="timeout" from="MessageTimer" to="." method="_on_message_timer_timeout"]
 [connection signal="timeout" from="MessageBlinkTimer" to="." method="_on_message_blink_timer_timeout"]
 [connection signal="timeout" from="HiScoreBlinkTimer" to="." method="_on_hi_score_blink_timer_timeout"]
+[connection signal="pressed" from="JoystickToggle" to="." method="_on_joystick_toggle_pressed"]

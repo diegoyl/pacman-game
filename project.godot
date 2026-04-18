@@ -10,10 +10,11 @@ config_version=5
 
 [application]
 
-config/name="My First 2D Game"
+config/name="pacman but youre the ghost"
+config/description="dont get eaten by the pac-men"
 run/main_scene="uid://cqow47bch5ocs"
 config/features=PackedStringArray("4.6", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="uid://b43vubl2cnnf1"
 
 [display]
 

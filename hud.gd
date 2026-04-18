@@ -2,11 +2,13 @@ extends CanvasLayer
 
 signal start_game
 var hi_score = 0
+var _joystick_on: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
-
+	_joystick_on = DisplayServer.is_touchscreen_available()
+	_apply_joystick_state()
+	_sync_joystick_toggle_visibility()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -33,6 +35,8 @@ func show_game_over(new_score):
 	$Message.show()
 	
 	$StartButton.show()
+	$JoystickToggle.show()
+
 	update_hi_score(new_score)
 	
 	
@@ -57,6 +61,7 @@ func _on_start_button_pressed() -> void:
 	$ButtonClick.play()
 	$StartButton.hide()
 	$HiScoreLabel.hide()
+	$JoystickToggle.hide()
 	start_game.emit()
 
 
@@ -76,3 +81,22 @@ func _on_hi_score_blink_timer_timeout() -> void:
 		$HiScoreLabel.hide() 
 	else:
 		$HiScoreLabel.show()
+
+
+func _on_joystick_toggle_pressed() -> void:
+	_joystick_on = not _joystick_on
+	_apply_joystick_state()
+
+
+func _apply_joystick_state() -> void:
+	$Joystick.visible = _joystick_on
+	if not _joystick_on:
+		$Joystick._clear_input()  # see note below
+	_update_joystick_toggle_text()
+	
+func _update_joystick_toggle_text() -> void:
+	$JoystickToggle.text = "HIDE JOYSTICK" if _joystick_on else "SHOW JOYSTICK"
+	
+func _sync_joystick_toggle_visibility() -> void:
+	# Same moments as Start: visible when Start is visible
+	$JoystickToggle.visible = $StartButton.visible
