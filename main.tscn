@@ -3,9 +3,11 @@
 [ext_resource type="Script" uid="uid://cljo0h54ukqrs" path="res://main.gd" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://ckudr8chj1kgo" path="res://player.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://c1twr2i6iwxt8" path="res://mob.tscn" id="2_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://c1vu17g2sxuvx" path="res://bonus.tscn" id="3_272bh"]
 [ext_resource type="PackedScene" uid="uid://dls44sfrwd3jx" path="res://hud.tscn" id="3_h2yge"]
 [ext_resource type="AudioStream" uid="uid://6536h73bgihc" path="res://art/pacman_music_loop.ogg" id="5_7mycd"]
 [ext_resource type="AudioStream" uid="uid://cqe3x7pn1y1ex" path="res://art/pacman-game-over.ogg" id="6_7mycd"]
+[ext_resource type="AudioStream" uid="uid://b6u65nsvrbn6b" path="res://art/eating-bonus.ogg" id="8_5vw27"]
 
 [sub_resource type="Curve2D" id="Curve2D_lquwl"]
 _data = {
@@ -13,9 +15,16 @@ _data = {
 }
 point_count = 5
 
+[sub_resource type="Curve2D" id="Curve2D_5vw27"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 576, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 480, 0, 0, 0, 0, 0, 480, 576)
+}
+point_count = 4
+
 [node name="Main" type="Node" unique_id=2107062155]
 script = ExtResource("1_h2yge")
 mob_scene = ExtResource("2_1bvp3")
+bonus_scene = ExtResource("3_272bh")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=2096389584]
 anchors_preset = 15
@@ -47,6 +56,13 @@ curve = SubResource("Curve2D_lquwl")
 position = Vector2(480, 0)
 rotation = 1.5707964
 
+[node name="BonusPath" type="Path2D" parent="." unique_id=860742816]
+curve = SubResource("Curve2D_5vw27")
+
+[node name="BonusSpawnLocation" type="PathFollow2D" parent="BonusPath" unique_id=1536619355]
+position = Vector2(0, 576)
+rotation = -1.5707964
+
 [node name="HUD" parent="." unique_id=727676462 instance=ExtResource("3_h2yge")]
 
 [node name="Music" type="AudioStreamPlayer2D" parent="." unique_id=1830401043]
@@ -55,6 +71,9 @@ parameters/looping = true
 
 [node name="DeathSound" type="AudioStreamPlayer2D" parent="." unique_id=1963658977]
 stream = ExtResource("6_7mycd")
+
+[node name="BonusSound" type="AudioStreamPlayer2D" parent="." unique_id=1963658978]
+stream = ExtResource("8_5vw27")
 
 [connection signal="hit" from="Player" to="." method="game_over"]
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]

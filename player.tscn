@@ -1,23 +1,29 @@
 [gd_scene format=3 uid="uid://ckudr8chj1kgo"]
 
 [ext_resource type="Script" uid="uid://cjvqm1qwpcrio" path="res://player.gd" id="1_sweqy"]
-[ext_resource type="Texture2D" uid="uid://bkvinb12ha528" path="res://art/ghost-down/frame_0_delay-0.1s.png" id="2_1jxqw"]
-[ext_resource type="Texture2D" uid="uid://4jyn0ix7fu0v" path="res://art/ghost-dead/ghost-dead-1.png" id="2_b26j0"]
-[ext_resource type="Texture2D" uid="uid://dei8jmfh5ruhm" path="res://art/ghost-up/frame_0_delay-0.1s.png" id="2_sweqy"]
-[ext_resource type="Texture2D" uid="uid://c7ilodpkumn3i" path="res://art/ghost-up/frame_1_delay-0.1s.png" id="3_1jxqw"]
-[ext_resource type="Texture2D" uid="uid://cptxhagmk0dnb" path="res://art/ghost-down/frame_1_delay-0.1s.png" id="3_dw050"]
-[ext_resource type="Texture2D" uid="uid://2e8fw240hpu2" path="res://art/ghost-dead/ghost-dead-2.png" id="3_n7ghd"]
-[ext_resource type="Texture2D" uid="uid://7ml0ftll5ogq" path="res://art/ghost-left/frame_0_delay-0.1s.png" id="4_b26j0"]
-[ext_resource type="Texture2D" uid="uid://bg66rw64smxvd" path="res://art/ghost-left/frame_1_delay-0.1s.png" id="5_n7ghd"]
+[ext_resource type="Texture2D" uid="uid://bde8nk11c3ajd" path="res://art/ghost-dead/ghost-dead-wonky 1.png" id="2_606se"]
+[ext_resource type="Texture2D" uid="uid://ck4x5ib48087o" path="res://art/ghost-dead/ghost-dead-wonky 2.png" id="3_u1c27"]
+[ext_resource type="Texture2D" uid="uid://bhdf1mbfxc72" path="res://art/ghost-down-wonky/frame_0_delay-0.1s.png" id="4_606se"]
+[ext_resource type="Texture2D" uid="uid://dnu53wjg23ci5" path="res://art/ghost-down-wonky/frame_1_delay-0.1s.png" id="5_u1c27"]
+[ext_resource type="Texture2D" uid="uid://cdg5hqk8fkdsj" path="res://art/ghost-down-wonky/frame_2_delay-0.1s.png" id="6_op7ga"]
+[ext_resource type="Texture2D" uid="uid://qxfbcub5yini" path="res://art/ghost-left-wonky/frame_0_delay-0.1s.png" id="6_urp6f"]
+[ext_resource type="Texture2D" uid="uid://cy8qpe06l1ijg" path="res://art/ghost-left-wonky/frame_1_delay-0.1s.png" id="7_bwjto"]
+[ext_resource type="Texture2D" uid="uid://0nqiyfedjc6r" path="res://art/ghost-down-wonky/frame_3_delay-0.1s.png" id="7_q13i1"]
+[ext_resource type="Texture2D" uid="uid://cik8h2xngulqt" path="res://art/ghost-left-wonky/frame_2_delay-0.1s.png" id="8_606se"]
+[ext_resource type="Texture2D" uid="uid://dwd2xbwf1rhjr" path="res://art/ghost-up-wonky/frame_0_delay-0.1s.png" id="8_nvl01"]
+[ext_resource type="Texture2D" uid="uid://b621lyjkao4s7" path="res://art/ghost-up-wonky/frame_1_delay-0.1s.png" id="9_ivps1"]
+[ext_resource type="Texture2D" uid="uid://dy1cruf8x4aq4" path="res://art/ghost-left-wonky/frame_3_delay-0.1s.png" id="9_u1c27"]
+[ext_resource type="Texture2D" uid="uid://cvvhray0j5i4q" path="res://art/ghost-up-wonky/frame_2_delay-0.1s.png" id="10_urp6f"]
+[ext_resource type="Texture2D" uid="uid://lpjssdeaivx8" path="res://art/ghost-up-wonky/frame_3_delay-0.1s.png" id="11_bwjto"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_dw050"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_b26j0")
+"texture": ExtResource("2_606se")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_n7ghd")
+"texture": ExtResource("3_u1c27")
 }],
 "loop": true,
 "name": &"dead",
@@ -25,10 +31,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_1jxqw")
+"texture": ExtResource("4_606se")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_dw050")
+"texture": ExtResource("5_u1c27")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_op7ga")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_q13i1")
 }],
 "loop": true,
 "name": &"down",
@@ -36,10 +48,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_b26j0")
+"texture": ExtResource("6_urp6f")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_n7ghd")
+"texture": ExtResource("7_bwjto")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_606se")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_u1c27")
 }],
 "loop": true,
 "name": &"left",
@@ -47,10 +65,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_sweqy")
+"texture": ExtResource("8_nvl01")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_1jxqw")
+"texture": ExtResource("9_ivps1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_urp6f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_bwjto")
 }],
 "loop": true,
 "name": &"up",
@@ -62,6 +86,7 @@ radius = 27.0
 height = 60.0
 
 [node name="Player" type="Area2D" unique_id=760169373]
+collision_mask = 6
 script = ExtResource("1_sweqy")
 metadata/_edit_group_ = true
 

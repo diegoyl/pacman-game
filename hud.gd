@@ -43,6 +43,13 @@ func show_game_over(new_score):
 func update_score(score):
 	$ScoreLabel.text = str(score)
 
+
+func set_score_label_clock_fx_active(active: bool) -> void:
+	if active:
+		$ScoreLabel.add_theme_color_override("font_color", Color(1, 0, 0))
+	else:
+		$ScoreLabel.add_theme_color_override("font_color", Color(1, 1, 1))
+
 func update_hi_score(new_score):
 	$HiScoreLabel.show()
 	

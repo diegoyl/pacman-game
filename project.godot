@@ -16,6 +16,12 @@ run/main_scene="uid://cqow47bch5ocs"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="uid://b43vubl2cnnf1"
 
+[layer_names]
+
+2d_physics/layer_1="player"
+2d_physics/layer_2="mob"
+2d_physics/layer_3="bonus"
+
 [display]
 
 window/size/viewport_width=480

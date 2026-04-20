@@ -1,52 +1,126 @@
 [gd_scene format=3 uid="uid://c1twr2i6iwxt8"]
 
 [ext_resource type="Script" uid="uid://dfmab38ss1nil" path="res://mob.gd" id="1_1qmh0"]
-[ext_resource type="Texture2D" uid="uid://bem15ic6q65s8" path="res://art/pacman/frame_0_delay-0.04s.png" id="4_ieysi"]
-[ext_resource type="Texture2D" uid="uid://djbukcy4j3tvd" path="res://art/pacman/frame_1_delay-0.04s.png" id="5_7ulmv"]
-[ext_resource type="Texture2D" uid="uid://l35i42va7i2m" path="res://art/pacman/frame_2_delay-0.04s.png" id="6_pcqmr"]
-[ext_resource type="Texture2D" uid="uid://cb1uu034blgby" path="res://art/pacman/frame_3_delay-0.04s.png" id="7_jbnni"]
+[ext_resource type="Texture2D" uid="uid://bem15ic6q65s8" path="res://art/pacman-wonky/frame_0_delay-0.04s.png" id="2_s5nov"]
+[ext_resource type="Texture2D" uid="uid://djbukcy4j3tvd" path="res://art/pacman-wonky/frame_1_delay-0.04s.png" id="3_b3mxk"]
+[ext_resource type="Texture2D" uid="uid://l35i42va7i2m" path="res://art/pacman-wonky/frame_2_delay-0.04s.png" id="4_1qmh0"]
+[ext_resource type="Texture2D" uid="uid://cb1uu034blgby" path="res://art/pacman-wonky/frame_3_delay-0.04s.png" id="5_gfurk"]
+[ext_resource type="Texture2D" uid="uid://chkqwh3biuihq" path="res://art/pacman-wonky/ice/ice1.png" id="6_gy8bd"]
+[ext_resource type="Texture2D" uid="uid://dltrdr75kwk5w" path="res://art/pacman-wonky/rainbow/rb1.png" id="6_h0ign"]
+[ext_resource type="Texture2D" uid="uid://d118biqkd6ymw" path="res://art/pacman-wonky/rainbow/rb2.png" id="7_6ak38"]
+[ext_resource type="Texture2D" uid="uid://qidxyd7iygq6" path="res://art/pacman-wonky/ice/ice2.png" id="7_srff1"]
+[ext_resource type="Texture2D" uid="uid://duerb3m7qpan8" path="res://art/pacman-wonky/ice/ice3.png" id="8_hpl8x"]
+[ext_resource type="Texture2D" uid="uid://d0wbv287bsvu" path="res://art/pacman-wonky/rainbow/rb3.png" id="8_rxhkm"]
+[ext_resource type="Texture2D" uid="uid://daon44qikf4aw" path="res://art/pacman-wonky/ice/ice4.png" id="9_10kxg"]
+[ext_resource type="Texture2D" uid="uid://bnyr3fw2inrdr" path="res://art/pacman-wonky/rainbow/rb4.png" id="9_mhy1y"]
+[ext_resource type="Texture2D" uid="uid://biv8wldh2ncws" path="res://art/pacman-wonky/rainbow/rb5.png" id="10_gy8bd"]
+[ext_resource type="Texture2D" uid="uid://xml257dteri" path="res://art/pacman-wonky/rainbow/rb6.png" id="11_srff1"]
+[ext_resource type="Texture2D" uid="uid://b2xmsesbxkfn2" path="res://art/pacman-wonky/rainbow/rb7.png" id="12_hpl8x"]
+[ext_resource type="Texture2D" uid="uid://dhqed247s42w1" path="res://art/pacman-wonky/rainbow/rb8.png" id="13_10kxg"]
+[ext_resource type="Texture2D" uid="uid://b4vorpk5okxxv" path="res://art/pacman-wonky/rainbow/rb9.png" id="14_5en0g"]
+[ext_resource type="Texture2D" uid="uid://c2txl5hanwhj8" path="res://art/pacman-wonky/rainbow/rb10.png" id="15_n647c"]
+[ext_resource type="Texture2D" uid="uid://c23f3apedc7dn" path="res://art/pacman-wonky/rainbow/rb11.png" id="16_7dsds"]
+[ext_resource type="Texture2D" uid="uid://jr4vbalt8a3v" path="res://art/pacman-wonky/rainbow/rb12.png" id="17_fifov"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pcqmr"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_ieysi")
+"texture": ExtResource("2_s5nov")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_7ulmv")
+"texture": ExtResource("3_b3mxk")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_pcqmr")
+"texture": ExtResource("4_1qmh0")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_jbnni")
+"texture": ExtResource("5_gfurk")
 }],
 "loop": true,
-"name": &"walk",
+"name": &"default",
+"speed": 16.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_gy8bd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_srff1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_hpl8x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_10kxg")
+}],
+"loop": true,
+"name": &"ice",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_h0ign")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_6ak38")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_rxhkm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_mhy1y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_gy8bd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_srff1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_hpl8x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_10kxg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_5en0g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_n647c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_7dsds")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_fifov")
+}],
+"loop": true,
+"name": &"rainbow",
 "speed": 16.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jbnni"]
-radius = 36.0
-height = 84.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_5en0g"]
+radius = 39.20459
 
-[node name="Mob" type="RigidBody2D" unique_id=1754361327]
+[node name="Mob" type="RigidBody2D" unique_id=1754361327 groups=["mobs"]]
+z_index = 10
+collision_layer = 2
 collision_mask = 0
 gravity_scale = 0.0
 script = ExtResource("1_1qmh0")
 metadata/_edit_group_ = true
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1647547878 groups=["mobs"]]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1647547878]
 rotation = 1.5707964
 scale = Vector2(6, 6)
 sprite_frames = SubResource("SpriteFrames_pcqmr")
-animation = &"walk"
-frame = 2
-frame_progress = 0.17190368
+animation = &"ice"
+frame_progress = 0.18406072
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1327008925]
 rotation = 1.5707964
-shape = SubResource("CapsuleShape2D_jbnni")
+shape = SubResource("CircleShape2D_5en0g")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=1977693291]
 
