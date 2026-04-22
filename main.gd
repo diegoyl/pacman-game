@@ -7,6 +7,7 @@ var score
 
 var _default_score_timer_wait: float
 var _default_mob_timer_wait: float
+var forced_bonus_idx: int = 0
 
 const CLOCK_FAST_DURATION_SEC := 4.0
 const CLOCK_FAST_MIN_SCORE_WAIT := 0.05
@@ -76,6 +77,7 @@ func new_game():
 	$HUD/HiScoreBlinkTimer.stop()
 
 	score = 0
+	forced_bonus_idx = 0
 	_reset_all_bonus_run_state()
 	$StartTimer.start()
 	$Player.start($StartPosition.position)
@@ -88,15 +90,29 @@ func new_game():
 	$Music.play()
 
 func _on_mob_timer_timeout() -> void:
+	create_mob()
 	
-	# create mob or bonus (90/10 split)
-	const split = 0.31 # mob when > split , bonus when < split
-	
-	var random = randf()
-	if random > split:
-		create_mob()
-	else:
-		create_bonus()
+	if score == 4 and forced_bonus_idx < 1:
+		forced_bonus_idx = 1
+		create_bonus("clock_fast")
+		return
+	elif score == 9 and forced_bonus_idx < 2:
+		forced_bonus_idx = 2
+		create_bonus("mob_slow")
+		return
+	elif score == 12 and forced_bonus_idx < 3:
+		forced_bonus_idx = 3
+		create_bonus("player_slow")
+		return
+	elif score == 16 and forced_bonus_idx < 4:
+		forced_bonus_idx = 4
+		create_bonus("mob_fast")
+		return
+	elif score > 5:
+		const split := 0.3
+		var random := randf()
+		if random < split:
+			create_bonus()
 	
 func create_mob():
 	var mob = mob_scene.instantiate()
@@ -122,8 +138,10 @@ func create_mob():
 	if mob.has_method("set_mob_bonus_visual"):
 		mob.set_mob_bonus_visual(_mob_fast_stack > 0, _mob_slow_stack > 0)
 	
-func create_bonus():
-	var bonus = bonus_scene.instantiate()
+func create_bonus(forced_bonus_type: String = "") -> void:
+	var bonus := bonus_scene.instantiate()
+	if not forced_bonus_type.is_empty():
+		bonus.set("bonus_type", forced_bonus_type)
 
 	var spawn_location = $BonusPath/BonusSpawnLocation
 	spawn_location.progress_ratio = randf()

@@ -12,11 +12,10 @@ const BONUS_TYPES = [
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	#var bonus_types = Array($AnimatedSprite2D.sprite_frames.get_animation_names())
-	#bonus_type = BONUS_TYPES.pick_random()
-	bonus_type = "mob_slow"
+	if bonus_type.is_empty():
+		bonus_type = BONUS_TYPES.pick_random()
 
-	$AnimatedSprite2D.play(bonus_type) # assuming BonusType names match animation names
+	$AnimatedSprite2D.play(bonus_type)
 
 
 
